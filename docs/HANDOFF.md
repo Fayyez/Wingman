@@ -66,10 +66,10 @@ test. `execCommand` insertion is disabled by default until verified live (see SP
 | M1-04 gateway | ✅ | `app/llm/` routes.yaml, Anthropic/OpenAI/fake, fallback-before-first-token, breaker, cost |
 | M1-05 prompts | ✅ | `app/prompts/suggest/v1/*.j2` (L1–L4 cache layering) |
 | M1-06 /v1/suggest | ✅ | SSE; metadata-only persistence (test asserts no chat text in DB) |
-| M1-07 api-client | ⏳ | in progress |
+| M1-07 api-client | ✅ | `packages/api-client` generated via `make gen-api`; typed SSE; compile-time contract vs core; `contract.yml` CI |
 | M1-08 core store | ✅ | Dexie + AES-GCM store, redaction, request builder (92 TS tests) |
 | M1-09 WA adapter | ✅ | from M0 (live verification still pending) |
-| M1-10/11 extension shell + UI | ⏳ | next |
+| M1-10/11 extension shell + UI | ⏳ | in progress (subagent): SW owns auth+store+API, Shadow-DOM panel, hotkeys, commands |
 | M1-12 E2E demo | ⏳ | automated on mock WA + manual on real WA |
 
 Local dev without keys: `LLM_MODE=fake` (or no keys) makes the gateway use the deterministic fake provider.
