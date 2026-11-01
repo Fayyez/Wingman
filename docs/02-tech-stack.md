@@ -101,7 +101,7 @@ platform (Fly.io / Render / Cloud Run) + managed Postgres with pgvector (Neon/Su
   - Current Claude models removed `temperature`/`top_p` and assistant prefill. **Diversity across the 3
     suggestions comes from the prompt + schema** (each card must use a different `approach`), not from sampling params.
   - Use structured outputs for the response shape (no prefill tricks).
-  - Prompt caching is prefix-based. Order prompt blocks from most stable to least stable (design §7.3).
+  - Prompt caching is prefix-based. Order prompt blocks from most stable to least stable (design §6.1).
 
 ### ADR-09 Embeddings: **provider-agnostic, multilingual**; retrieval is **tag-first, vector-second**
 - Roman Urdu/Hindi is transliterated text that embedding models handle unevenly. So retrieval

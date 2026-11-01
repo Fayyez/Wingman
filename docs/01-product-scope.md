@@ -102,7 +102,7 @@ Instagram Web → Android (keyboard + notification listener + optional accessibi
 |---|---|---|
 | R1 Texting-style conformity | Style engine: deterministic feature profile + LLM style card + user exemplars + **post-processor** that rewrites spellings, casing and punctuation to the user's habits. Global profile plus per-chat overrides. | Cold start: import the user's own sent messages from open chats (with consent) or a 6-question "which would you send?" quiz. |
 | R2 Per-chat history | Local encrypted message store per chat + rolling summary + key facts. Server stays stateless about chat content. | History starts when the extension sees the chat (plus a back-scroll import of up to ~200 messages). |
-| R3 Adaptation + feedback | Controls, tweak chips, directives; explicit + implicit feedback; per-user preference learning; global offline improvement loop | See design §8 |
+| R3 Adaptation + feedback | Controls, tweak chips, directives; explicit + implicit feedback; per-user preference learning; global offline improvement loop | See design §11 |
 | R4 Overlay, multi-platform | Shadow-DOM overlay in WhatsApp Web; `PlatformAdapter` interface keeps the core platform-neutral | Instagram is the next adapter |
 | R5 Interact in the same chat | Slash commands in the compose box, W button, hotkeys, inline insert | |
 | R6 Desktop → Android → iOS | Shared TS core + identical backend API; mobile adapters produce the same normalized model | Mobile constraints in roadmap |
