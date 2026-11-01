@@ -75,6 +75,17 @@ export type Objective =
 export type Length = 'one_liner' | 'short' | 'normal';
 export type LanguageMix = 'auto' | 'more_urdu_hindi' | 'more_english';
 export type SuggestMode = 'auto' | 'reply' | 'topic' | 'guide' | 'rewrite';
+export type Stage = 'just_matched' | 'talking' | 'close' | 'dating' | 'friend';
+export type Tweak =
+  | 'shorter'
+  | 'longer'
+  | 'funnier'
+  | 'more_flirty'
+  | 'less_flirty'
+  | 'more_urdu_hindi'
+  | 'more_english'
+  | 'more_casual'
+  | 'more_sincere';
 
 export interface Controls {
   tone?: Tone;

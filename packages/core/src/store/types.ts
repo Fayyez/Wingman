@@ -1,5 +1,5 @@
 /** Platform-neutral local conversation store (docs/03-system-design.md §2.4). */
-import type { Controls, NormalizedMessage, PlatformId } from '../model';
+import type { Controls, NormalizedMessage, PlatformId, Stage } from '../model';
 
 export interface StoredChat {
   chatKey: string;
@@ -7,7 +7,7 @@ export interface StoredChat {
   title: string;
   alias?: string;
   isGroup: boolean;
-  stage?: string;
+  stage?: Stage;
   settings?: Controls;
   firstSeenAt: string;
   lastMsgAt: string;

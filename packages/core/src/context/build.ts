@@ -1,5 +1,5 @@
 /** Builds the POST /v1/suggest body (docs/03-system-design.md §4.1). */
-import type { Controls, MessageKind, NormalizedMessage, SuggestMode } from '../model';
+import type { Controls, MessageKind, NormalizedMessage, SuggestMode, Stage, Tweak } from '../model';
 import type { ChatMemory, StoredChat } from '../store/types';
 import { redact } from './redact';
 
@@ -15,7 +15,7 @@ export interface SuggestRequestDraft {
   chat: {
     key: string;
     platform: string;
-    stage: string | null;
+    stage: Stage | null;
     their_alias: string;
     is_group: boolean;
   };
@@ -25,7 +25,7 @@ export interface SuggestRequestDraft {
   directive: string | null;
   draft: string | null;
   avoid: string[];
-  tweak: string | null;
+  tweak: Tweak | null;
   memory: { summary: string; facts: string[]; covered_until: string | null };
   messages: { dir: 'in' | 'out'; kind: MessageKind; text: string; ts: string | null }[];
   client: { app: string; version: string; style_profile_version: number | null };
@@ -41,7 +41,7 @@ export interface BuildSuggestInput {
   directive?: string | null;
   draft?: string | null;
   avoid?: string[];
-  tweak?: string | null;
+  tweak?: Tweak | null;
   client: { app: string; version: string; styleProfileVersion?: number | null };
 }
 

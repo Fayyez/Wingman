@@ -1,0 +1,1145 @@
+{
+  "components": {
+    "schemas": {
+      "AnalysisEvent": {
+        "properties": {
+          "boundary_signal": {
+            "title": "Boundary Signal",
+            "type": "boolean"
+          },
+          "energy": {
+            "title": "Energy",
+            "type": "string"
+          },
+          "hooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Hooks",
+            "type": "array"
+          },
+          "interest": {
+            "title": "Interest",
+            "type": "string"
+          },
+          "recommended_move": {
+            "title": "Recommended Move",
+            "type": "string"
+          },
+          "their_mood": {
+            "title": "Their Mood",
+            "type": "string"
+          }
+        },
+        "required": [
+          "their_mood",
+          "energy",
+          "interest",
+          "hooks",
+          "recommended_move",
+          "boundary_signal"
+        ],
+        "title": "AnalysisEvent",
+        "type": "object"
+      },
+      "CardEvent": {
+        "properties": {
+          "approach": {
+            "title": "Approach",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": ["reply", "topic"],
+            "title": "Kind",
+            "type": "string"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "why": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Why"
+          }
+        },
+        "required": ["id", "rank", "kind", "approach", "text"],
+        "title": "CardEvent",
+        "type": "object"
+      },
+      "ChatInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "is_group": {
+            "default": false,
+            "title": "Is Group",
+            "type": "boolean"
+          },
+          "key": {
+            "description": "HMAC chat key from the client",
+            "maxLength": 64,
+            "minLength": 8,
+            "title": "Key",
+            "type": "string"
+          },
+          "platform": {
+            "maxLength": 32,
+            "title": "Platform",
+            "type": "string"
+          },
+          "stage": {
+            "anyOf": [
+              {
+                "enum": ["just_matched", "talking", "close", "dating", "friend"],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stage"
+          },
+          "their_alias": {
+            "default": "them",
+            "description": "First name or alias",
+            "maxLength": 40,
+            "title": "Their Alias",
+            "type": "string"
+          }
+        },
+        "required": ["key", "platform"],
+        "title": "ChatInfo",
+        "type": "object"
+      },
+      "ChatMessage": {
+        "additionalProperties": false,
+        "properties": {
+          "dir": {
+            "enum": ["in", "out"],
+            "title": "Dir",
+            "type": "string"
+          },
+          "kind": {
+            "default": "text",
+            "enum": [
+              "text",
+              "image",
+              "video",
+              "voice",
+              "sticker",
+              "gif",
+              "link",
+              "deleted",
+              "system",
+              "story_reply",
+              "reel_share",
+              "unknown"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "text": {
+            "default": "",
+            "maxLength": 4000,
+            "title": "Text",
+            "type": "string"
+          },
+          "ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ts"
+          }
+        },
+        "required": ["dir"],
+        "title": "ChatMessage",
+        "type": "object"
+      },
+      "ClientInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "app": {
+            "maxLength": 16,
+            "title": "App",
+            "type": "string"
+          },
+          "style_profile_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Style Profile Version"
+          },
+          "version": {
+            "maxLength": 32,
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": ["app", "version"],
+        "title": "ClientInfo",
+        "type": "object"
+      },
+      "Controls": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "default": 3,
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "enum": ["auto", "more_urdu_hindi", "more_english"],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "length": {
+            "anyOf": [
+              {
+                "enum": ["one_liner", "short", "normal"],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Length"
+          },
+          "objective": {
+            "anyOf": [
+              {
+                "enum": [
+                  "keep_going",
+                  "build_rapport",
+                  "deepen",
+                  "flirt_up",
+                  "ask_out",
+                  "recover",
+                  "slow_down",
+                  "end_gracefully"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objective"
+          },
+          "tone": {
+            "anyOf": [
+              {
+                "enum": [
+                  "chill",
+                  "playful",
+                  "flirty",
+                  "sweet",
+                  "sincere",
+                  "funny",
+                  "apologetic",
+                  "confident"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tone"
+          }
+        },
+        "title": "Controls",
+        "type": "object"
+      },
+      "DevLoginRequest": {
+        "description": "Dev/test-only login by email (endpoint absent in production).",
+        "properties": {
+          "email": {
+            "maxLength": 320,
+            "pattern": "^[^@\\s]+@[^@\\s]+$",
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": ["email"],
+        "title": "DevLoginRequest",
+        "type": "object"
+      },
+      "DoneEvent": {
+        "properties": {
+          "cards": {
+            "title": "Cards",
+            "type": "integer"
+          },
+          "first_card_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Card Ms"
+          },
+          "latency_ms": {
+            "title": "Latency Ms",
+            "type": "integer"
+          }
+        },
+        "required": ["latency_ms", "first_card_ms", "cards"],
+        "title": "DoneEvent",
+        "type": "object"
+      },
+      "ErrorEvent": {
+        "properties": {
+          "code": {
+            "enum": ["llm_unavailable", "bad_output", "safety_block", "internal"],
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": ["code", "message"],
+        "title": "ErrorEvent",
+        "type": "object"
+      },
+      "GoogleLoginRequest": {
+        "description": "Google ID token obtained on the client (e.g. via chrome.identity).",
+        "properties": {
+          "id_token": {
+            "minLength": 1,
+            "title": "Id Token",
+            "type": "string"
+          }
+        },
+        "required": ["id_token"],
+        "title": "GoogleLoginRequest",
+        "type": "object"
+      },
+      "GuideEvent": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": ["text"],
+        "title": "GuideEvent",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "MeResponse": {
+        "description": "The authenticated user's profile and settings.",
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "locale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locale"
+          },
+          "plan": {
+            "title": "Plan",
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/UserSettingsOut"
+          }
+        },
+        "required": ["id", "email", "display_name", "locale", "plan", "settings"],
+        "title": "MeResponse",
+        "type": "object"
+      },
+      "Memory": {
+        "additionalProperties": false,
+        "properties": {
+          "covered_until": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Covered Until"
+          },
+          "facts": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Facts",
+            "type": "array"
+          },
+          "summary": {
+            "default": "",
+            "maxLength": 2000,
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "title": "Memory",
+        "type": "object"
+      },
+      "MemoryEvent": {
+        "properties": {
+          "facts_add": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Facts Add",
+            "type": "array"
+          }
+        },
+        "required": ["facts_add"],
+        "title": "MemoryEvent",
+        "type": "object"
+      },
+      "MetaEvent": {
+        "properties": {
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": ["request_id", "prompt_version"],
+        "title": "MetaEvent",
+        "type": "object"
+      },
+      "RefreshRequest": {
+        "description": "Refresh token previously issued by this API.",
+        "properties": {
+          "refresh_token": {
+            "minLength": 1,
+            "title": "Refresh Token",
+            "type": "string"
+          }
+        },
+        "required": ["refresh_token"],
+        "title": "RefreshRequest",
+        "type": "object"
+      },
+      "SuggestEventName": {
+        "enum": ["meta", "analysis", "card", "guide", "memory", "done", "error"],
+        "type": "string"
+      },
+      "SuggestRequest": {
+        "additionalProperties": false,
+        "description": "Request body for POST /v1/suggest. Messages must already be redacted by the client.",
+        "properties": {
+          "avoid": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 9,
+            "title": "Avoid",
+            "type": "array"
+          },
+          "chat": {
+            "$ref": "#/components/schemas/ChatInfo"
+          },
+          "client": {
+            "$ref": "#/components/schemas/ClientInfo"
+          },
+          "controls": {
+            "$ref": "#/components/schemas/Controls"
+          },
+          "directive": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Directive"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Draft"
+          },
+          "memory": {
+            "$ref": "#/components/schemas/Memory"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
+            "maxItems": 60,
+            "minItems": 1,
+            "title": "Messages",
+            "type": "array"
+          },
+          "mode": {
+            "default": "auto",
+            "enum": ["auto", "reply", "topic", "guide", "rewrite"],
+            "title": "Mode",
+            "type": "string"
+          },
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "trigger": {
+            "default": "button",
+            "enum": ["incoming_message", "button", "command", "tweak", "regenerate"],
+            "title": "Trigger",
+            "type": "string"
+          },
+          "tweak": {
+            "anyOf": [
+              {
+                "enum": [
+                  "shorter",
+                  "longer",
+                  "funnier",
+                  "more_flirty",
+                  "less_flirty",
+                  "more_urdu_hindi",
+                  "more_english",
+                  "more_casual",
+                  "more_sincere"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tweak"
+          }
+        },
+        "required": ["request_id", "chat", "messages", "client"],
+        "title": "SuggestRequest",
+        "type": "object"
+      },
+      "TokenResponse": {
+        "description": "Access + refresh token pair. `expires_in` is the access token lifetime in seconds.",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "token_type": {
+            "const": "bearer",
+            "default": "bearer",
+            "title": "Token Type",
+            "type": "string"
+          }
+        },
+        "required": ["access_token", "refresh_token", "expires_in"],
+        "title": "TokenResponse",
+        "type": "object"
+      },
+      "UserSettingsOut": {
+        "description": "The user's saved defaults and consent toggles.",
+        "properties": {
+          "auto_suggest": {
+            "title": "Auto Suggest",
+            "type": "boolean"
+          },
+          "data_donation": {
+            "title": "Data Donation",
+            "type": "boolean"
+          },
+          "default_objective": {
+            "anyOf": [
+              {
+                "enum": [
+                  "keep_going",
+                  "build_rapport",
+                  "deepen",
+                  "flirt_up",
+                  "ask_out",
+                  "recover",
+                  "slow_down",
+                  "end_gracefully"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Objective"
+          },
+          "default_tone": {
+            "anyOf": [
+              {
+                "enum": [
+                  "chill",
+                  "playful",
+                  "flirty",
+                  "sweet",
+                  "sincere",
+                  "funny",
+                  "apologetic",
+                  "confident"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Tone"
+          },
+          "emoji_level": {
+            "title": "Emoji Level",
+            "type": "integer"
+          },
+          "lang_pref": {
+            "enum": ["auto", "more_urdu_hindi", "more_english"],
+            "title": "Lang Pref",
+            "type": "string"
+          },
+          "style_learning": {
+            "title": "Style Learning",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "default_tone",
+          "default_objective",
+          "lang_pref",
+          "emoji_level",
+          "auto_suggest",
+          "data_donation",
+          "style_learning"
+        ],
+        "title": "UserSettingsOut",
+        "type": "object"
+      },
+      "UserSettingsPatch": {
+        "additionalProperties": false,
+        "description": "Partial update of user settings; omitted fields are unchanged.",
+        "properties": {
+          "auto_suggest": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auto Suggest"
+          },
+          "data_donation": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data Donation"
+          },
+          "default_objective": {
+            "anyOf": [
+              {
+                "enum": [
+                  "keep_going",
+                  "build_rapport",
+                  "deepen",
+                  "flirt_up",
+                  "ask_out",
+                  "recover",
+                  "slow_down",
+                  "end_gracefully"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Objective"
+          },
+          "default_tone": {
+            "anyOf": [
+              {
+                "enum": [
+                  "chill",
+                  "playful",
+                  "flirty",
+                  "sweet",
+                  "sincere",
+                  "funny",
+                  "apologetic",
+                  "confident"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Tone"
+          },
+          "emoji_level": {
+            "anyOf": [
+              {
+                "maximum": 3.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Emoji Level"
+          },
+          "lang_pref": {
+            "anyOf": [
+              {
+                "enum": ["auto", "more_urdu_hindi", "more_english"],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lang Pref"
+          },
+          "style_learning": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Style Learning"
+          }
+        },
+        "title": "UserSettingsPatch",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "description": "Wingman access JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "Wingman API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/healthz": {
+      "get": {
+        "operationId": "healthz_healthz_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Healthz Healthz Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Healthz"
+      }
+    },
+    "/v1/auth/dev": {
+      "post": {
+        "description": "Dev/test only: log in (creating the user if needed) by email.",
+        "operationId": "authDev",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevLoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Auth Dev",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/auth/google": {
+      "post": {
+        "description": "Exchange a Google ID token for an access + refresh token pair.",
+        "operationId": "authGoogle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleLoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Auth Google",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "description": "Rotate a refresh token. Reusing an already-rotated token revokes all of the user's tokens.",
+        "operationId": "authRefresh",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Auth Refresh",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/me": {
+      "delete": {
+        "description": "Hard-delete the account and every row that belongs to it.",
+        "operationId": "deleteMe",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Me",
+        "tags": ["auth"]
+      },
+      "get": {
+        "description": "Profile and settings of the authenticated user.",
+        "operationId": "getMe",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Me",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/me/settings": {
+      "patch": {
+        "description": "Partially update the user's settings.",
+        "operationId": "patchMeSettings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSettingsPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Settings",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/suggest": {
+      "post": {
+        "description": "Server-Sent Events. Event names and payload schemas: `meta` → MetaEvent, `analysis` → AnalysisEvent, `card` → CardEvent, `guide` → GuideEvent, `memory` → MemoryEvent, `done` → DoneEvent, `error` → ErrorEvent. Order: meta, analysis?, card×1-3, guide?, memory?, then done or error.",
+        "operationId": "suggest_v1_suggest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Stream suggestions for the active chat",
+        "tags": ["suggest"]
+      }
+    }
+  }
+}
