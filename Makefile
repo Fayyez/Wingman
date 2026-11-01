@@ -34,7 +34,7 @@ eval:
 	@echo "eval: placeholder"
 
 spike-llm:
-	cd services/api && uv run python ../../tools/spikes/llm_quality/run.py $(ARGS)
+	uv run tools/spikes/llm_quality/run.py $(ARGS)
 
 spike-embed:
 	uv run --project services/api python tools/spikes/embeddings/run.py $(ARGS)

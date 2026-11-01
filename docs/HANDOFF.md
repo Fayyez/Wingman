@@ -12,7 +12,8 @@
 | 3a. System design | `docs/03-system-design.md` | ✅ Done |
 | 3b. POC implementation plan | `docs/04-poc-implementation-plan.md` | ✅ Done |
 | 3c. POC → production roadmap | `docs/05-production-roadmap.md` | ✅ Done |
-| 4. POC build — M0 spikes | code | ⏳ Not started (awaiting owner go-ahead + open questions) |
+| 4. POC build — M0 | code | 🟡 Engineering done; **owner actions pending** (live WA checklist, API keys) |
+| 5. POC build — M1 walking skeleton | code | ⏳ Next (can start in parallel with owner actions) |
 
 ## Decisions taken (by owner, 2026-11-01)
 
@@ -39,14 +40,42 @@ Langfuse for LLM tracing/evals, pnpm + uv monorepo.
 6. **Audience** — positioning says "young men", but should onboarding/tone stay gender-neutral so anyone can use it? (Recommended: yes.)
 7. **Brand** — product name "Wingman" final? Chrome Web Store listing name/assets.
 
+## M0 status (task IDs from `04-poc-implementation-plan.md`)
+
+| ID | State | Where / notes |
+|---|---|---|
+| M0-01 scaffold | ✅ | pnpm+turbo workspace, `packages/core`, `packages/platform-adapters`, `apps/extension` (WXT), `services/api` (uv, FastAPI healthz, content-scrubbing logs), Makefile |
+| M0-02 compose | ✅ | `infra/docker-compose.yml`: pgvector + redis verified healthy; langfuse service defined but never started |
+| M0-03 WA DOM spike | 🟡 | Automated: parser, insert, `//` interception, sanitizer, 8 real-Chromium tests + extension E2E on mock, all passing. **Live check pending:** `packages/platform-adapters/src/whatsapp-web/SPIKE.md` (L1–L12) |
+| M0-04 LLM quality spike | 🟡 | `tools/spikes/llm_quality/` + 30 scenarios in `data/eval/spike/scenarios.yaml`; dry-run OK. **Needs API keys** to run live, then native-speaker blind rating |
+| M0-05 embedding bake-off | 🟡 | `tools/spikes/embeddings/` + 50 items; lexical baseline R@5 0.24. **Needs keys** (or bge-m3 download) |
+| M0-06 CI | ✅ | `.github/workflows/ci-ts.yml` (incl. browser job), `ci-py.yml`. Not yet observed running on GitHub |
+| M0-07 go/no-go | ⏳ | After live WA checklist + LLM spike ratings |
+
+Notable finding: the clear-after-command fallback (`execCommand('delete')`) could desync a controlled
+editor and **send hidden `//` text** if the user typed quickly. Fixed and covered by a regression
+test. `execCommand` insertion is disabled by default until verified live (see SPIKE.md).
+
 ## Next steps (when resuming)
 
-1. Owner answers open questions above (at least 1, 3, 4).
-2. Start **M0** in `docs/04-poc-implementation-plan.md`: monorepo scaffold, WhatsApp Web DOM spike,
-   LLM quality spike on 30 scenarios.
-3. Record results of each spike in this file's session log.
+Owner (blocking M0-07):
+1. Run the live WhatsApp checklist in `SPIKE.md` and send back diagnostics + sanitized fixtures.
+2. Put `ANTHROPIC_API_KEY` (and optionally `OPENAI_API_KEY`) in `.env`, then run:
+   `make spike-llm ARGS="run --targets anthropic:claude-opus-5-5:low,anthropic:claude-sonnet-5-5:low,anthropic:claude-haiku-5-5:low"`
+   and have a native speaker fill `out/<stamp>/ratings.csv` (blind) → `make spike-llm ARGS="summarize --run <dir>"`.
+3. Answer open questions 1, 3, 4.
+
+Engineering (can proceed now): start **M1** (M1-01 … M1-07 backend first: DB models, auth, LLM gateway
+reusing `tools/spikes/llm_quality/prompt_v0.py` as the seed for `prompts/suggest/v1`).
+
+Working style: simpler, well-specified tasks are delegated to Sonnet subagents (medium effort) on
+disjoint directories; the lead session reviews, runs all checks, and commits.
 
 ## Session log
 
 - **2026-11-01** — Repo was empty. Gathered owner decisions D1–D4. Wrote all design docs (01–05),
   `CLAUDE.md`, this handoff. No code yet.
+- **2026-11-01 (cont.)** — M0 engineering: scaffold, adapter spike + tests, extension spike panel,
+  backend skeleton, infra, CI, LLM + embedding spike tooling and datasets. All local checks green:
+  core 13 + adapters 7 unit tests, 8 browser tests, extension E2E, 3 Python tests. Docker daemon
+  was started manually in the session (`dockerd`).
