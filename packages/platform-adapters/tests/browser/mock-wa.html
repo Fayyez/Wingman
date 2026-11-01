@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>mock wa</title></head>
+<body>
+<!-- Mock of WhatsApp Web's compose behaviour: a *controlled* rich-text editor (like Lexical) that
+     ignores direct DOM writes, only changes through beforeinput/paste, and SENDS on Enter keydown
+     (bubble listener on the editor) or send-button click. window.__sent records every send. -->
+<div id="main">
+  <header><span dir="auto" title="Ayesha">Ayesha</span></header>
+  <div role="application" aria-label="Message list" id="list"></div>
+  <footer>
+    <div contenteditable="true" role="textbox" data-tab="10" id="ed"><p><br></p></div>
+    <button aria-label="Send" id="send"><span data-icon="send">➤</span></button>
+  </footer>
+</div>
+<script>
+  window.__sent = [];
+  let state = '';
+  const ed = document.getElementById('ed');
+  const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+  const render = () => {
+    ed.innerHTML = state ? state.split('\n').map((l) => `<p>${esc(l) || '<br>'}</p>`).join('') : '<p><br></p>';
+    const r = document.createRange(); r.selectNodeContents(ed); r.collapse(false);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  };
+  const allSelected = () => { const s = getSelection(); return s && !s.isCollapsed && s.toString().replace(/\n/g, '') === state.replace(/\n/g, ''); };
+  const insert = (t) => { state = allSelected() ? t : state + t; render(); };
+  ed.addEventListener('beforeinput', (e) => {
+    e.preventDefault();
+    if (e.inputType === 'insertText' && e.data != null) insert(e.data);
+    else if (e.inputType.startsWith('delete')) { state = allSelected() ? '' : state.slice(0, -1); render(); }
+  });
+  ed.addEventListener('paste', (e) => { e.preventDefault(); insert(e.clipboardData.getData('text/plain')); });
+  const send = () => {
+    if (!state.trim()) return;
+    window.__sent.push(state);
+    const row = document.createElement('div');
+    row.innerHTML = `<div data-id="true_923001234567@c.us_M${window.__sent.length}"><div class="message-out"><div class="copyable-text" data-pre-plain-text="[5:00 pm, 01/11/2026] Me: "><span class="selectable-text"><span>${esc(state)}</span></span></div></div></div>`;
+    document.getElementById('list').appendChild(row);
+    state = ''; render();
+  };
+  ed.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
+  document.getElementById('send').addEventListener('click', send);
+  window.__setDomDirectly = (t) => { ed.textContent = t; }; // proves direct writes don't reach the model
+  window.__state = () => state;
+</script>
+</body></html>

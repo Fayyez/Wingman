@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+**/dist
+**/.output
+**/.wxt
+services/
+docs/
+data/
+*.md
