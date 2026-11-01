@@ -1,0 +1,12 @@
+{# L3 chat block: stable until memory refresh (cached). #}
+<chat>
+Other person: {{ chat.their_alias }}
+Relationship stage: {{ chat.stage or "unknown" }}
+Group chat: {{ "yes" if chat.is_group else "no" }}
+</chat>
+<memory>
+Summary: {{ memory.summary or "(new chat)" }}
+Facts:
+{% for f in memory.facts %}- {{ f }}
+{% else %}- (none)
+{% endfor %}</memory>

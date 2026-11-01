@@ -2,3 +2,8 @@ export * from './model';
 export * from './adapter';
 export * from './commands';
 export * from './chatKey';
+export * from './store/types';
+export * from './store/crypto';
+export * from './store/dexie';
+export * from './context/redact';
+export * from './context/build';
