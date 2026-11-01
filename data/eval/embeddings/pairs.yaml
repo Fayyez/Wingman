@@ -1,0 +1,406 @@
+# M0-05 embedding bake-off: 50 retrieval items. id prefix pk-/in-/en- = language group.
+# Spellings deliberately differ between query and positive (kia/kya, hy/hai, ni/nahi, yr/yaar...).
+items:
+  # ---------- Roman Urdu (PK) ----------
+  - id: pk-01
+    query: "hmm"
+    positive: "Kya hua yaar, aaj itna dry kyun reply kar rahe ho? Sab theek hai?"
+    negatives:
+      - "Hmm mujhe lagta hai paneer tikka zyada achi hogi, tum kya lo ge?"
+      - "Hmm kal ka match dekha? Babar ne kamal kar diya"
+      - "Hmm sochna parega, ammi se pooch ke batati hun"
+    tags: [dry-reply]
+  - id: pk-02
+    query: "kia kr rhy ho. k"
+    positive: "Kuch khaas nahi yr, bas thk gaya hun. Tum btao kya chal raha hai?"
+    negatives:
+      - "K bhai theek hai, kal 5 bje milte hain library mein"
+      - "Kya kar rahe ho abhi? Chai peene aa jao, kettli chardi hui hai"
+      - "Kia kr rhy ho itni raat ko? So jao, subah paper hai"
+    tags: [dry-reply]
+  - id: pk-03
+    query: "Kal paper hai aur mjhe kuch bhi yaad ni ho raha, bht tension hai"
+    positive: "Yaar ghabrao mat, ek ek chapter karke chalo. Main tumhare saath call pe parh leta hun, kya khayal hai?"
+    negatives:
+      - "Kal match hai aur mujhe yaqeen hai Pakistan jeet jaye ga, tension nahi leni"
+      - "Paper ke baad chalo biryani khane, meri taraf se treat"
+      - "Tension mat lo, abu ko main sambhal lun ga, tum bas rishte wali baat taal do"
+    tags: [exam-stress]
+  - id: pk-04
+    query: "result aa gya meri CGPA gir gai hai, ammi ko kia bataun"
+    positive: "Ek semester se zindagi khatam nahi hoti. Pehle khud ko sambhalo, phir ammi ko araam se bata dena, woh samjhengi."
+    negatives:
+      - "Result ki party kab de rahe ho? Tumhari to GPA 3.9 aayi hai na"
+      - "Ammi ne kaha hai rishta aya hai, tum bas ek baar mil lo"
+      - "Gir gaya yaar mera phone, screen toot gayi poori"
+    tags: [exam-stress]
+  - id: pk-05
+    query: "Ab so jao, kafi late ho gya hai"
+    positive: "Acha theek hai, shab bakhair. Meethe khwab, kal subah baat karte hain"
+    negatives:
+      - "Late ho gaya hun yaar, traffic mein phans gaya, 10 min aur"
+      - "Abhi to bohat jaldi hai, mere paas sone ka time hi nahi, assignment karna hai"
+      - "Kal subah early uthna hai warna ammi daantengi, so jata hun"
+    tags: [good-night]
+  - id: pk-06
+    query: "gn, kal milte hn"
+    positive: "Good night! Allah hafiz, apna khayal rakhna aur achi neend lena"
+    negatives:
+      - "Good morning! Uth jao sooraj nikal aya, nashta ready hai"
+      - "Kal milte hain lekin pehle assignment mukammal kar lena yaar"
+      - "Allah hafiz bhai, khuda tumhein sehat de, bimari ka sun ke dukh hua"
+    tags: [good-night]
+  - id: pk-07
+    query: "Eid Mubarak!! kia plan hai aj"
+    positive: "Aap ko bhi Eid Mubarak! Subah namaz ke baad rishtedaron ke ghar jana hai, shaam ko sheer khurma party tumhare ghar?"
+    negatives:
+      - "Happy Diwali! Aaj diyas jalaye aur mithai banai, tumhare yahan kya plan hai?"
+      - "Mubarak ho bhai, naya phone liya! Kitne ka mila?"
+      - "Aj ka plan kuch nahi, bas ghar pe so kar match dekhunga"
+    tags: [eid]
+  - id: pk-08
+    query: "Eidi kitni mili is dafa? meri to sirf 500 mili"
+    positive: "Haha meri to 2000 mil gayi, abu ne is dafa khushi se di! Chalo kal Eidi se ice cream khate hain"
+    negatives:
+      - "Salary kitni mili is mahine? Meri to kat ke 40000 aayi"
+      - "Diwali ka bonus mila kya tumhe? Mere office ne sirf mithai ka dabba diya"
+      - "Eid ka chand nazar aya? Mausam kharab hai yahan"
+    tags: [eid]
+  - id: pk-09
+    query: "kal ka match dekha?? babar ne to aag laga di"
+    positive: "Haan yaar kya shandar innings thi! 80 bnaye, aakhri over tak maza aa gaya. Pakistan zindabad"
+    negatives:
+      - "Kal ka lecture dekha? Sir ne itna difficult topic parha diya"
+      - "Virat ne kal century maari, India ne Pakistan ko hara diya, kaisa laga?"
+      - "Babar azam ki jersey lena chahta hun, online sasti mil rahi hai kya?"
+    tags: [cricket]
+  - id: pk-10
+    query: "ye umpire ne to hadd kr di, clearly not out tha"
+    positive: "Bilkul yaar, DRS mein bhi pata chal raha tha. Ye decision match palat gaya, kya bakwas umpiring thi"
+    negatives:
+      - "Hadd kar di tum ne, itni der se wait kar rahi hun, call to utha lo"
+      - "Umpire ko chhodo, tum batao kal chai pe aa rahe ho ya nahi?"
+      - "Not out ho gaya mera paper mein, passing marks aa gaye shukar hai"
+    tags: [cricket]
+  - id: pk-11
+    query: "tum se ek baat krni thi, agar tum bura na mano"
+    positive: "Haan bolo, mujhe bhi tumse baat karna acha lagta hai. Dil ki baat kehni hai to keh do, bura nahi manungi"
+    negatives:
+      - "Bura mat manna lekin tum ne mera sweater kharab kar diya, dhona parega"
+      - "Ek baat batao, biryani mein aloo daalte hain ya nahi? Behes ho gayi hai"
+      - "Baat karni thi tumse paper ke baare mein, notes mil sakte hain?"
+    tags: [asking-out]
+  - id: pk-12
+    query: "mujhe tum bohat pasand ho, kia tum mere sath coffee pe chalogi?"
+    positive: "Aww ye to bohat sweet hai. Kal shaam ko chalte hain, bas ghar mein bata kar aungi. Kya kya order karna hai?"
+    negatives:
+      - "Mujhe tumhari jacket pasand aayi, kahan se li? Kya brand hai?"
+      - "Coffee nahi peeta main, chai hi behtar hai. Doodh patti, karak"
+      - "Sorry yaar, main tumhe sirf dost samajhti hun, is se zyada kuch nahi"
+    tags: [asking-out]
+  - id: pk-13
+    query: "sorry yar mene jaan bujh k nhi kia tha, plz maaf kr do"
+    positive: "Theek hai, maine maaf kiya. Bas agle dafa aise mat karna, mujhe bura lagta hai. Ab muskura do"
+    negatives:
+      - "Maaf karna bhai, main aaj nahi aa sakta, abu ki tabiyat kharab hai"
+      - "Jaan bujh ke mat chupao, jo hua sach bata do, mujhe bura nahi lage ga"
+      - "Please yaar mujhe pizza chahiye, order kar do na, paise main de dungi"
+    tags: [apology]
+  - id: pk-14
+    query: "mujhe pta hai meri ghalti thi, kia tum abhi bhi naraz ho?"
+    positive: "Thori si naraz thi lekin tumhari sorry se dil narm ho gaya. Chalo ab sab bhool jaate hain"
+    negatives:
+      - "Ghalti meri nahi thi, tum ne khud time pe message nahi kiya tha"
+      - "Naraz kyun ho, maine to bas mazaak kiya tha, itna serious mat lo"
+      - "Abhi bhi ghar nahi pohonchi, rickshaw ka intezar hai, bohat ghalat jagah hun"
+    tags: [apology]
+  - id: pk-15
+    query: "seen kr k reply nhi kia tm ne, itni bori hun main?"
+    positive: "Nahi nahi yaar, phone par battery khatam ho gayi thi. Sorry late reply ke liye, tum boring bilkul nahi ho"
+    negatives:
+      - "Seen ka option band kar do settings mein, mujhe bhi pasand nahi"
+      - "Boring lecture tha aaj, sir ne sirf slides parhi aur chale gaye"
+      - "Reply jaldi do, mujhe urgent kaam hai, address bhejo abhi"
+    tags: [left-on-read]
+  - id: pk-16
+    query: "kahan ghaib ho gaye ho 3 din se, koi msg nahi"
+    positive: "Yaar sorry, ghar mein mehman aaye hue the aur bohat busy tha. Ab free hun, bolo kya chal raha hai?"
+    negatives:
+      - "Ghaib ho jata hai tera network ka signal, jazz ki line bohat kharab hai"
+      - "3 din baad Eid hai, kapre silwane hain darzi se, tum ne le liye?"
+      - "Koi message nahi aya abhi tak interview ka, phir bhi umeed hai"
+    tags: [left-on-read]
+  - id: pk-17
+    query: "tumhari smile bht pyari hai, sach mein"
+    positive: "Haha shukriya! Tum bhi kam nahi ho, tumhari baatein hamesha mera din bana deti hain"
+    negatives:
+      - "Pyari si billi hai tumhari, kya naam hai uska? Kitni mahine ki hai?"
+      - "Sach mein? Mujhe yaqeen nahi hota, tum mazaak to nahi kar rahe"
+      - "Bohat shukriya aapka, interview ke liye dua kijiye ga"
+    tags: [compliment]
+  - id: pk-18
+    query: "wese aj tm bohat acha lag rhy the shaadi mein"
+    positive: "Aww thanks yaar, tumne notice kiya? Bari mehnat se tayyar hui thi, tum bhi to handsome lag rahe the"
+    negatives:
+      - "Shaadi mein khana bohat acha tha lekin biryani thori thandi thi"
+      - "Aaj shaadi pe mat aana, mehndi cancel ho gayi hai, rain forecast hai"
+      - "Wese tum ne mera diya hua gift khola? Mujhe lagta hai pasand nahi aya"
+    tags: [compliment]
+  - id: pk-19
+    query: "chai peene chalen? bahar bohat thand hai"
+    positive: "Haan yaar chalo, dhaba wali doodh patti aur saath mein samosay. Main 10 minute mein pohanch jata hun"
+    negatives:
+      - "Chai nahi peeta, tabiyat kharab hai, doctor ne mana kiya hai"
+      - "Thand bohat hai yahan, mera heater kharab ho gaya, ghar mein kaanp raha hun"
+      - "Chalo match dekhne chalen, bahar screen lagi hai gali mein"
+    tags: [food-chai]
+  - id: pk-20
+    query: "rishta aya hai tumhare liye, abu keh rahe hain k hamesha k liye soch lo"
+    positive: "Ammi abu ko samjhana mushkil hai lekin main abhi shaadi ke liye tayyar nahi hun. Pehle career settle karna hai"
+    negatives:
+      - "Rishta pakka ho gaya? Mubarak ho! Shaadi kab hai, dholki ki dates bata do"
+      - "Abu ne naya phone dilaya hai, Samsung ka, camera kamal ka hai"
+      - "Soch lo yaar, wo tumhe pasand karta hai, ek chance de ke dekho"
+    tags: [family-pressure]
+  # ---------- Roman Hindi (IN) ----------
+  - id: in-01
+    query: "ok"
+    positive: "Kya hua yaar, aaj itna dry kyu reply kar rahi ho? Sab thik hai na?"
+    negatives:
+      - "Ok bhai, kal subah 9 baje station pe milte hain, late mat hona"
+      - "Ok theek hai, main order kar deta hun, pizza ya burger?"
+      - "Ok to tum ne kal ka scene dekha? IPL final mein kya twist tha"
+    tags: [dry-reply]
+  - id: in-02
+    query: "kuch nhi, bas aise hi"
+    positive: "Kuch to hai, mujhe pata chal jata hai. Batao na, main sunne ke liye hu"
+    negatives:
+      - "Kuch nahi hua bhai, bas thak gaya hu, college se aaya hu abhi"
+      - "Bas aise hi chai pi raha tha, tum aaj kahan ho?"
+      - "Aise hi mat chhod do, thoda effort karo sambandh me, wo bhi tumse pyar karti hai"
+    tags: [dry-reply]
+  - id: in-03
+    query: "kal exam hai aur mene kuch bhi nai padha, dar lag raha hai"
+    positive: "Arre tension mat le yaar, important topics ek baar dekh le. Raat ko call pe saath padhte hain, ho jayega"
+    negatives:
+      - "Kal match hai aur maine kuch bhi nahi khaya, bahut bhookh lagi hai"
+      - "Exam ke baad party hai, sab aa rahe hain, tum bhi chalo"
+      - "Dar lag raha hai mujhe, mummy ko kaise batau ki mene fail kar diya"
+    tags: [exam-stress]
+  - id: in-04
+    query: "boards ka pressure itna hai ki neend hi nahi aati"
+    positive: "Samajh sakta hu, pehle thoda break le aur paani pi. Time table bana ke chalo, tum kar loge bhai"
+    negatives:
+      - "Neend nahi aa rahi to chal baat karte hain, aaj raat bhar jagte hain"
+      - "Boards ke baad ghumne chalenge Goa, plan ban gaya hai kya?"
+      - "Pressure cooker ki seeti nahi aa rahi, mummy bol rahi hai naya lena padega"
+    tags: [exam-stress]
+  - id: in-05
+    query: "Chalo ab so jao, bahut raat ho gayi"
+    positive: "Haan thik hai, good night yaar. Sweet dreams, subah baat karte hai"
+    negatives:
+      - "Bahut raat ho gayi, ghar pahunch gaya na? Safe pahunchna to batana"
+      - "Subah jaldi uthna hai gym jaana hai, chalo main bhi so jata hu"
+      - "Ab so jao aur kal mat bolna ki nahi uthi, alarm laga lena"
+    tags: [good-night]
+  - id: in-06
+    query: "gud nyt, sapno me milte hai"
+    positive: "Hahaha good night! Tu bhi so ja ab. Kal milte hai college me"
+    negatives:
+      - "Good morning! Uth ja bhai, chai ready hai, nashta karke nikalte hain"
+      - "Sapne me bhoot dekha mene kal raat, dar ke uth gaya"
+      - "College me kal holiday hai kya? Teacher ne kuch bola?"
+    tags: [good-night]
+  - id: in-07
+    query: "Happy Diwali yaar! kya plan hai aaj"
+    positive: "Happy Diwali! Subah puja karni hai, shaam ko diye jalayenge aur mithai khayenge. Tum aao ghar pe?"
+    negatives:
+      - "Eid Mubarak! Aaj sheer khurma bana hai, bhai ke ghar jana hai"
+      - "Happy birthday yaar! Kal raat 12 baje cake kaatenge?"
+      - "Aaj ka plan? Kuch nahi, shopping jaana hai mall me"
+    tags: [diwali]
+  - id: in-08
+    query: "patake nahi jalane is baar pollution bohot hai, mithai kha lo"
+    positive: "Sahi bola, sirf diye aur rangoli. Mithai ke dabbe ghar pe pahucha deta hu, kaju katli chalegi na?"
+    negatives:
+      - "Pollution ki wajah se school band ho gaya, ghar me hi padhai karni hai"
+      - "Patakha ho tum, kitna shor karte ho, mujhe to mazaa aa gaya"
+      - "Mithai nahi khata main, sugar hai mujhe, doctor ne mana kiya hai"
+    tags: [diwali]
+  - id: in-09
+    query: "Kohli ne kya shot mara yaar! sixer"
+    positive: "Haan bhai maza aa gaya, chase master hai wo. India jeet jayega aaj, mujhe poora vishwas hai"
+    negatives:
+      - "Babar ne kya khela kal, Pakistan ko jeet dilayi, great knock"
+      - "Shot mat maar yaar, bar me jaake kya karna hai, ghar chalo"
+      - "Kya shot hai tera dp ka, kahan se click karwai? photographer kaun hai"
+    tags: [cricket]
+  - id: in-10
+    query: "ye ipl ka final kis ka hoga? CSK ya MI"
+    positive: "Mera vote CSK ke liye, Dhoni ka last season ho sakta hai. Tumhara dil kise bol raha hai?"
+    negatives:
+      - "Final year project ka submit kab hai? Guide ne date nahi batayi"
+      - "MI ki jersey kitne ki aati hai? Online discount chal raha hai kya"
+      - "Final decision le liya maine, job chhod raha hu, startup karna hai"
+    tags: [cricket]
+  - id: in-11
+    query: "tumse kuch kehna tha, par samajh nahi aa raha kaise bolu"
+    positive: "Bol de yaar, mai judge nahi karungi. Jo bhi dil me hai keh de, mujhe bhi tumse kuch kehna tha"
+    negatives:
+      - "Samajh nahi aa raha ye maths ka question, kaise solve karte hain?"
+      - "Kehna to bahut kuch tha lekin tumne gussa dikhaya, isliye chup rahi"
+      - "Tha kya wo? Bataya hi nahi tumne ki ghar jaa rahe ho kal"
+    tags: [asking-out]
+  - id: in-12
+    query: "mujhe tum pasand ho, kya tum mere sath movie chalogi?"
+    positive: "Awww sach me? Mujhe bhi tum accha lagta hai. Haan chalenge, sunday ko evening show dekh lete hai"
+    negatives:
+      - "Movie dekhne ka mann nahi hai aaj, ghar pe Netflix pe kuch dekhte hain"
+      - "Sorry bhai, mai tumhe us nazar se nahi dekhti, hum dost hi acche hai"
+      - "Pasand aayi tumhari shirt, kahan se li? Link bhej do"
+    tags: [asking-out]
+  - id: in-13
+    query: "sorry yaar galti ho gai, maaf kar do plz"
+    positive: "Chal theek hai, maaf kiya. Par dubara aisa mat karna, mujhe bura lagta hai. Ab hass bhi do"
+    negatives:
+      - "Sorry bhai, mai aaj nahi aa paunga, papa ki tabiyat kharab hai"
+      - "Galti nahi thi meri, tumne hi pehle gussa kiya tha, mujhe kyu blame kar rahe ho"
+      - "Plz yaar mujhe bhi le chalo, mai bore ho rahi hu ghar me"
+    tags: [apology]
+  - id: in-14
+    query: "kya tum abhi bhi mujhse gussa ho? maine to bola na sorry"
+    positive: "Thoda sa gussa tha, ab nahi. Tumhare sorry bolne se dil pighal gaya. Ab chalo kal chai pe milte hai"
+    negatives:
+      - "Gussa mat ho par sach bolu to tumhari galti thi, accept karlo"
+      - "Abhi bhi nahi pahunche tum? Mai 20 min se wait kar raha hu"
+      - "Sorry bolne se kya hoga, meri pura din kharab ho gaya, kuch to kar"
+    tags: [apology]
+  - id: in-15
+    query: "tune msg dekh k bhi reply nahi kiya, ignore kr rhi ho?"
+    positive: "Nahi yaar, bilkul nahi. Mummy ne phone le liya tha, ab free hu. Sorry, tum meri priority ho"
+    negatives:
+      - "Ignore kar de usko, wo hi toh drama karta rehta hai, tu apna dekh"
+      - "Msg dekh ke bata dena kab aa raha hai, mai gate pe wait karunga"
+      - "Priority list banao pehle, kaam bahut hai aur time kam, ek ek karke nipta"
+    tags: [left-on-read]
+  - id: in-16
+    query: "kaha gayab ho gaye yaar, 2 din se online hi nahi aaye"
+    positive: "Sorry yaar, ghar pe mehmaan aaye hue the, bahut busy tha. Ab free hu, bata kya chal raha hai?"
+    negatives:
+      - "Gayab ho gaya mera wallet, kahin gir gaya hoga, police complaint kar du?"
+      - "2 din baad Diwali hai, ghar ki safai bahut baki hai, help karo"
+      - "Online class kab hai, link bhej do group me, mene miss kar diya"
+    tags: [left-on-read]
+  - id: in-17
+    query: "tum aaj bahut cute lag rahi ho yaar"
+    positive: "Hehe thank you! Tum bhi kam nahi ho, tumhari baate hamesha mera mood accha kar deti hai"
+    negatives:
+      - "Cute sa puppy liya hai maine, uska naam Bruno rakha hai"
+      - "Aaj bahut thak gayi hu yaar, office me kaam bahut tha, bas so jaungi"
+      - "Lag rahi ho ki tum mujhse naraz ho, kya hua hai batao"
+    tags: [compliment]
+  - id: in-18
+    query: "tera haircut mast hai bro, kaha se karwaya"
+    positive: "Thanks bhai! Wo market ke saamne wala salon hai, bohot accha karta hai. Tu bhi chal ke try kar"
+    negatives:
+      - "Haircut karwa ke aaya to papa ne daant diya, kaha bahut chhote kar diye"
+      - "Mast hai ye song, link bhej na, playlist me daalna hai"
+      - "Kaha se laya itna sasta laptop? Mujhe bhi lena hai"
+    tags: [compliment]
+  - id: in-19
+    query: "bhookh lagi hai, chai aur samose khane chale?"
+    positive: "Haan chalo, mai bhi soch raha tha. Tapri pe adrak wali chai aur garam samose, mazaa aa jayega"
+    negatives:
+      - "Bhookh nahi hai bilkul, subah heavy nashta kar liya tha, tum jao"
+      - "Samose se acchi to kachori hoti hai, mere mohalle ki dukan ki khao to batao"
+      - "Chale jao yaha se, mujhe akela chhod do thodi der, mood kharab hai"
+    tags: [food-chai]
+  - id: in-20
+    query: "papa keh rahe hai ki shaadi kar lo ab, rishta aya hai accha"
+    positive: "Yaar mai abhi ready nahi hu. Pehle job set kar lu, phir dekhenge. Mummy-papa ko pyaar se samjha dunga"
+    negatives:
+      - "Shaadi ki date fix ho gayi? Congratulations! Sangeet me dance karna padega"
+      - "Papa ne naya scooter dilaya hai, color red, kal chala ke dikhata hu"
+      - "Accha rishta hai to dekh lo ek baar, ladka kya karta hai?"
+    tags: [family-pressure]
+  # ---------- Mostly English ----------
+  - id: en-01
+    query: "k."
+    positive: "Okay, what's wrong? You sound a bit off today. Want to talk about it?"
+    negatives:
+      - "K, I'll pick you up at 7, be ready by then"
+      - "K thanks, I'll send the report by tomorrow morning"
+      - "Okay sounds good, let's order Thai tonight"
+    tags: [dry-reply]
+  - id: en-02
+    query: "I have my finals tomorrow and I'm freaking out, nothing is sticking"
+    positive: "Hey, breathe. Do a quick revision of the key topics, sleep early, you've got this. Want me to quiz you?"
+    negatives:
+      - "My finals are done! Let's celebrate tonight, drinks on me"
+      - "Freaking out about the interview tomorrow, what should I wear?"
+      - "Nothing is sticking to this pan, best non-stick I ever bought"
+    tags: [exam-stress]
+  - id: en-03
+    query: "Heading to bed now, long day. Night!"
+    positive: "Good night! Sleep well and sweet dreams, talk tomorrow"
+    negatives:
+      - "Heading to the office now, long meeting day, will call at lunch"
+      - "Good morning! Hope you slept well, coffee's on me today"
+      - "Night out on Friday? Drinks at the rooftop place"
+    tags: [good-night]
+  - id: en-04
+    query: "Eid Mubarak! Hope you have a great day with family"
+    positive: "Eid Mubarak to you too! Biryani and sheer khurma at home, hope you enjoy the day as well"
+    negatives:
+      - "Happy Diwali! Lighting diyas tonight, wish you lots of joy"
+      - "Merry Christmas! Hope Santa was kind to you this year"
+      - "Hope you have a great day at your interview, you're going to crush it"
+    tags: [eid]
+  - id: en-05
+    query: "Can't believe that last over, what a game!"
+    positive: "Unreal finish! Heart rate still not down, that six off the last ball was pure insanity"
+    negatives:
+      - "Can't believe the last episode of the series, such a disappointing ending"
+      - "That last over of the semester was brutal, three exams in two days"
+      - "What a game of chess, he never saw the checkmate coming"
+    tags: [cricket]
+  - id: en-06
+    query: "I really like you, would you go out with me this weekend?"
+    positive: "That's really sweet, I like you too. Saturday evening works for me, dinner somewhere quiet?"
+    negatives:
+      - "I really like this place, would you like to come here again this weekend?"
+      - "I'm sorry, I only see you as a friend, I hope we can stay close"
+      - "Go out with me, I'm hungry, pizza place near the metro is open"
+    tags: [asking-out]
+  - id: en-07
+    query: "I'm so sorry about last night, I was out of line"
+    positive: "Thanks for owning it. I was hurt but I appreciate the apology, let's move on and not repeat it"
+    negatives:
+      - "I'm so sorry for your loss, please let me know if you need anything"
+      - "Last night was amazing, I had so much fun at the party"
+      - "Out of line? You called me names in front of everyone, I'm furious"
+    tags: [apology]
+  - id: en-08
+    query: "You've left me on read for two days, did I do something?"
+    positive: "No, not at all! My phone broke and work was crazy. I'm sorry, you did nothing wrong, I'm all yours now"
+    negatives:
+      - "Did I do something wrong at the meeting? My boss looked upset"
+      - "Two days left on your subscription, renew now to avoid losing data"
+      - "I'm reading the new book you recommended, no spoilers please"
+    tags: [left-on-read]
+  - id: en-09
+    query: "That outfit looks amazing on you tonight"
+    positive: "Aw thank you, that made my day! You clean up pretty well yourself"
+    negatives:
+      - "That outfit is too much for the office, HR might say something"
+      - "You look tired tonight, did you get any sleep at all?"
+      - "Amazing tonight's game, can't wait for the semi-final tomorrow"
+    tags: [compliment]
+  - id: en-10
+    query: "My parents keep asking when I'll get married, I'm so done"
+    positive: "Ugh, family pressure is the worst. Just tell them you'll decide on your own timeline, and change the topic with food"
+    negatives:
+      - "My parents are visiting next week, need to clean the entire apartment"
+      - "Congrats on getting married! The ceremony photos are beautiful"
+      - "I'm so done with this assignment, three more pages and then sleep"
+    tags: [family-pressure]

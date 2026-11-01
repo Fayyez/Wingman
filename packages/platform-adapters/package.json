@@ -1,0 +1,27 @@
+{
+  "name": "@wingman/platform-adapters",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src tests",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:browser": "node tests/browser/run.mjs"
+  },
+  "dependencies": {
+    "@wingman/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "esbuild": "^0.28.2",
+    "jsdom": "^26.1.0",
+    "playwright": "1.63.0",
+    "vitest": "^3.2.7"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "version": "wa-2026.11.01-unverified",
+  "verified": false,
+  "_note": "Heuristics from public knowledge of WhatsApp Web's DOM. MUST be verified against a live session (SPIKE.md) and then served via /v1/config. Every entry is an ordered list of fallbacks.",
+  "main": ["#main"],
+  "headerTitle": ["#main header [data-testid='conversation-info-header-chat-title']", "#main header span[dir='auto'][title]", "#main header span[dir='auto']"],
+  "messageRow": ["#main [data-id]"],
+  "incomingMarker": { "class": "message-in", "dataIdPrefix": "false_" },
+  "outgoingMarker": { "class": "message-out", "dataIdPrefix": "true_" },
+  "copyable": [".copyable-text[data-pre-plain-text]"],
+  "textSpan": ["span.selectable-text", "[data-testid='selectable-text']"],
+  "quoted": ["[aria-label='Quoted message']", ".quoted-mention", "[data-testid='quoted-message']"],
+  "compose": ["footer div[contenteditable='true'][role='textbox']", "footer div[contenteditable='true']"],
+  "sendButton": ["footer button[aria-label='Send']", "footer [data-icon='send']", "footer [data-icon='wds-ic-send-filled']"],
+  "kindIcons": {
+    "voice": ["audio-play", "ptt-play", "ptt-status", "audio-download"],
+    "video": ["media-play", "video-pip"],
+    "deleted": ["recalled"],
+    "gif": ["media-gif"]
+  },
+  "imageSelector": ["img[src^='blob:']"],
+  "insertStrategies": ["paste"],
+  "dateOrder": "dmy"
+}
