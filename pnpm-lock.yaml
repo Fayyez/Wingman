@@ -32,6 +32,9 @@ importers:
 
   apps/extension:
     dependencies:
+      '@wingman/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@wingman/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -42,6 +45,9 @@ importers:
       '@types/chrome':
         specifier: ^0.1.0
         version: 0.1.43
+      fake-indexeddb:
+        specifier: ^6.2.7
+        version: 6.2.7
       playwright:
         specifier: 1.63.0
         version: 1.63.0

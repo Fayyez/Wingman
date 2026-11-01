@@ -13,7 +13,8 @@
 | 3b. POC implementation plan | `docs/04-poc-implementation-plan.md` | ✅ Done |
 | 3c. POC → production roadmap | `docs/05-production-roadmap.md` | ✅ Done |
 | 4. POC build — M0 | code | 🟡 Engineering done; **owner actions pending** (live WA checklist, API keys) |
-| 5. POC build — M1 walking skeleton | code | 🟡 In progress — backend + client store done; API client, extension UI, E2E next |
+| 5. POC build — M1 walking skeleton | code | ✅ Done (automated E2E on mock WA); manual real-WA demo pending with M0 live check |
+| 6. POC build — M2 personalization & memory | code | ⏳ Next |
 
 ## Decisions taken (by owner, 2026-11-01)
 
@@ -69,10 +70,14 @@ test. `execCommand` insertion is disabled by default until verified live (see SP
 | M1-07 api-client | ✅ | `packages/api-client` generated via `make gen-api`; typed SSE; compile-time contract vs core; `contract.yml` CI |
 | M1-08 core store | ✅ | Dexie + AES-GCM store, redaction, request builder (92 TS tests) |
 | M1-09 WA adapter | ✅ | from M0 (live verification still pending) |
-| M1-10/11 extension shell + UI | ⏳ | in progress (subagent): SW owns auth+store+API, Shadow-DOM panel, hotkeys, commands |
-| M1-12 E2E demo | ⏳ | automated on mock WA + manual on real WA |
+| M1-10/11 extension shell + UI | ✅ | SW owns auth + encrypted store + API (Port streaming); Shadow-DOM W button + panel, insert/insert-next/copy/regenerate/tweaks/tones/modes, Alt+W, Alt+1..3, `//` commands; popup (dev login), options (debug panel, wipe) |
+| M1-12 E2E demo | 🟡 | `apps/extension/tests/e2e-suggest.mjs`: real backend (fake LLM) + extension + mock WA → 3 cards, insert never sends, `//topic` never sends ✅. Manual real-WA demo pending |
 
 Local dev without keys: `LLM_MODE=fake` (or no keys) makes the gateway use the deterministic fake provider.
+
+Known gaps carried into M2: `/v1/memory/refresh` not implemented yet (M2-06), so client memory only grows via
+`memory` deltas; auto-suggest off; Google sign-in implemented but untested (needs a Google OAuth client id).
+Content-script bundle is 45 KB after marking workspace packages `sideEffects: false` (was 145 KB with Dexie).
 
 ## Next steps (when resuming)
 
@@ -83,8 +88,10 @@ Owner (blocking M0-07):
    and have a native speaker fill `out/<stamp>/ratings.csv` (blind) → `make spike-llm ARGS="summarize --run <dir>"`.
 3. Answer open questions 1, 3, 4.
 
-Engineering (can proceed now): start **M1** (M1-01 … M1-07 backend first: DB models, auth, LLM gateway
-reusing `tools/spikes/llm_quality/prompt_v0.py` as the seed for `prompts/suggest/v1`).
+Engineering (can proceed now): start **M2** (personalization & memory): lexicon, style profiles +
+post-processor (TS + Python parity), cold start, chat overrides, `/v1/memory/refresh`, controls polish,
+auto mode, rewrite mode. Run the dev stack: `make up`, `LLM_MODE=fake make api`, build extension with
+`WXT_API_URL=http://localhost:8000` (see `apps/extension/README.md`).
 
 Working style: simpler, well-specified tasks are delegated to Sonnet subagents (medium effort) on
 disjoint directories; the lead session reviews, runs all checks, and commits.
@@ -97,3 +104,7 @@ disjoint directories; the lead session reviews, runs all checks, and commits.
   backend skeleton, infra, CI, LLM + embedding spike tooling and datasets. All local checks green:
   core 13 + adapters 7 unit tests, 8 browser tests, extension E2E, 3 Python tests. Docker daemon
   was started manually in the session (`dockerd`).
+- **2026-11-01 (cont.)** — M1 done: auth/DB, LLM gateway, `/v1/suggest` SSE, generated TS client with
+  compile-time contract (caught 2 type drifts), extension SW + panel + E2E. Checks: 141 TS unit tests,
+  8 browser tests, 2 extension E2Es, 44 Python tests (real Postgres). Bugs caught by tests: FK flush
+  order in suggestion persistence (cards silently not saved).
