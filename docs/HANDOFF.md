@@ -13,7 +13,7 @@
 | 3b. POC implementation plan | `docs/04-poc-implementation-plan.md` | ✅ Done |
 | 3c. POC → production roadmap | `docs/05-production-roadmap.md` | ✅ Done |
 | 4. POC build — M0 | code | 🟡 Engineering done; **owner actions pending** (live WA checklist, API keys) |
-| 5. POC build — M1 walking skeleton | code | ⏳ Next (can start in parallel with owner actions) |
+| 5. POC build — M1 walking skeleton | code | 🟡 In progress — backend + client store done; API client, extension UI, E2E next |
 
 ## Decisions taken (by owner, 2026-11-01)
 
@@ -55,6 +55,24 @@ Langfuse for LLM tracing/evals, pnpm + uv monorepo.
 Notable finding: the clear-after-command fallback (`execCommand('delete')`) could desync a controlled
 editor and **send hidden `//` text** if the user typed quickly. Fixed and covered by a regression
 test. `execCommand` insertion is disabled by default until verified live (see SPIKE.md).
+
+## M1 status
+
+| ID | State | Where / notes |
+|---|---|---|
+| M1-01 skeleton | ✅ | `app/errors.py` (JSON errors), Sentry, scrubbing logs |
+| M1-02 DB | ✅ | `app/db/models.py`, Alembic `20261101_0001`; tests use real Postgres (`wingman_test`) |
+| M1-03 auth | ✅ | Google + dev login, EdDSA JWT (15 min), rotating refresh tokens w/ reuse detection, `/v1/me` |
+| M1-04 gateway | ✅ | `app/llm/` routes.yaml, Anthropic/OpenAI/fake, fallback-before-first-token, breaker, cost |
+| M1-05 prompts | ✅ | `app/prompts/suggest/v1/*.j2` (L1–L4 cache layering) |
+| M1-06 /v1/suggest | ✅ | SSE; metadata-only persistence (test asserts no chat text in DB) |
+| M1-07 api-client | ⏳ | in progress |
+| M1-08 core store | ✅ | Dexie + AES-GCM store, redaction, request builder (92 TS tests) |
+| M1-09 WA adapter | ✅ | from M0 (live verification still pending) |
+| M1-10/11 extension shell + UI | ⏳ | next |
+| M1-12 E2E demo | ⏳ | automated on mock WA + manual on real WA |
+
+Local dev without keys: `LLM_MODE=fake` (or no keys) makes the gateway use the deterministic fake provider.
 
 ## Next steps (when resuming)
 
