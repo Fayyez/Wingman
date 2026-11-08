@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Wingman options</title>
+    <style>
+      body {
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+        max-width: 520px;
+        margin: 24px auto;
+        padding: 0 16px;
+        color: #111b21;
+        background: #fff;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #111b21;
+          color: #e9edef;
+        }
+      }
+      section {
+        margin: 20px 0;
+      }
+      button {
+        font: inherit;
+        padding: 4px 12px;
+      }
+      .muted {
+        color: #667781;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wingman options</h1>
+    <section>
+      <label><input type="checkbox" id="debug" /> Show the debug panel on WhatsApp Web</label>
+      <div class="muted">
+        Adapter self-test, parsed messages and event log. Takes effect without reloading WhatsApp
+        Web.
+      </div>
+    </section>
+    <section>
+      <button id="forget">Forget all local data</button>
+      <span id="forget-status" class="muted"></span>
+      <div class="muted">
+        Deletes every stored chat, message, memory and suggestion log from this browser. Sign-in is
+        kept.
+      </div>
+    </section>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

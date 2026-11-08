@@ -1,0 +1,15 @@
+{# L4 turn block: volatile, never cached. #}
+<conversation>
+{% for m in messages %}{{ "USER" if m.dir == "out" else alias_upper }}: {{ m.text if m.text else "[" ~ m.kind ~ "]" }}
+{% endfor %}</conversation>
+
+Mode: {{ mode }}. {{ mode_hint }}
+Controls: {% if controls %}{% for k, v in controls.items() %}{{ k }}={{ v }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}none (use judgement){% endif %}
+Number of cards: {{ count }}
+{% if tweak %}Adjust compared with the previous suggestions: {{ tweak }}.
+{% endif %}{% if avoid %}Don't repeat or closely paraphrase these previous suggestions:
+{% for a in avoid %}- {{ a }}
+{% endfor %}{% endif %}{% if directive %}<instruction>{{ directive }}</instruction>
+{% endif %}{% if draft %}<draft>{{ draft }}</draft>
+{% endif %}
+Suggest what the USER should send next.

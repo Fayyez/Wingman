@@ -1,0 +1,9 @@
+{# L2 user style block. Source: "window" (M1: user's messages in this request) or "profile" (M2). #}
+<user_style>
+{% if features %}Measured habits of the user (match these):
+{% for k, v in features.items() %}{{ k }}: {{ v }}
+{% endfor %}{% else %}Not enough of the user's own messages yet: write casual, short, code-mixed Roman Urdu/Hindi + English, lowercase-leaning, light on emojis.
+{% endif %}{% if samples %}
+Messages the user actually sent (tone/spelling reference, don't copy):
+{% for s in samples %}- {{ s }}
+{% endfor %}{% endif %}</user_style>

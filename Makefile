@@ -25,7 +25,9 @@ fmt:
 	cd services/api && uv run ruff check --fix . && uv run ruff format .
 
 gen-api:
-	@echo "gen-api: placeholder (M1-07)"
+	cd services/api && uv run python ../../tools/gen_openapi.py ../../packages/api-client/openapi.json
+	pnpm --filter @wingman/api-client gen
+	pnpm exec prettier --write packages/api-client/openapi.json packages/api-client/src/schema.d.ts
 
 seed:
 	@echo "seed: placeholder"

@@ -19,6 +19,9 @@ const ctx = await chromium.launchPersistentContext('', {
   args: [`--disable-extensions-except=${ext}`, `--load-extension=${ext}`],
 });
 try {
+  // The legacy debug panel is only mounted when enabled from the options page.
+  const sw = ctx.serviceWorkers()[0] ?? (await ctx.waitForEvent('serviceworker'));
+  await sw.evaluate(() => chrome.storage.local.set({ debugPanel: true }));
   await ctx.route('https://web.whatsapp.com/**', (r) =>
     r.fulfill({ contentType: 'text/html', body: mock }),
   );

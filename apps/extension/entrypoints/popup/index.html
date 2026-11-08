@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="manifest.type" content="browser_action" />
+    <title>Wingman</title>
+    <style>
+      body {
+        font:
+          13px/1.4 system-ui,
+          sans-serif;
+        width: 280px;
+        margin: 0;
+        padding: 12px;
+        color: #111b21;
+        background: #fff;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #111b21;
+          color: #e9edef;
+        }
+        input {
+          background: #1f2c33;
+          color: inherit;
+          border: 1px solid #2a3942;
+        }
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 8px;
+      }
+      input,
+      button {
+        font: inherit;
+        padding: 4px 8px;
+        margin: 2px 0;
+      }
+      input {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .muted {
+        color: #667781;
+        font-size: 11px;
+        word-break: break-all;
+      }
+      .err {
+        color: #d9534f;
+        min-height: 16px;
+      }
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wingman</h1>
+    <div id="signed-in" hidden>
+      <div>Signed in as <b id="email"></b></div>
+      <button id="signout">Sign out</button>
+    </div>
+    <div id="signed-out" hidden>
+      <div>Not signed in.</div>
+      <form id="dev" hidden>
+        <input id="dev-email" type="email" placeholder="dev email" required />
+        <button type="submit">Dev login</button>
+      </form>
+      <button id="google" hidden>Sign in with Google</button>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="muted">API: <span id="api"></span></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
