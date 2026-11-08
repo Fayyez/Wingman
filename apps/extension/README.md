@@ -16,6 +16,14 @@ WhatsApp Web. It only ever **inserts** text into the compose box; the user alway
 - Tokens: access token in `chrome.storage.session`, refresh token in `chrome.storage.local`.
   Chat history lives only in the extension's IndexedDB. The only network target is the API origin.
 
+## Quick start (one command)
+
+    node tools/dev.mjs          # or: pnpm stack   (add --real for real LLM keys, --no-build to skip the build)
+
+Starts Postgres in Docker on a free host port (moves off 5432 if another Postgres is using it),
+writes `.env`, installs deps, migrates, builds the extension and runs the API. Then load
+`apps/extension/.output/chrome-mv3` in Chrome (see below). The manual steps follow.
+
 ## Dev setup
 
 1. Start Postgres and the backend (fake LLM, no keys needed):

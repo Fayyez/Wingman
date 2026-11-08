@@ -12,7 +12,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "stack": "node tools/dev.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

@@ -73,6 +73,9 @@ test. `execCommand` insertion is disabled by default until verified live (see SP
 | M1-10/11 extension shell + UI | ✅ | SW owns auth + encrypted store + API (Port streaming); Shadow-DOM W button + panel, insert/insert-next/copy/regenerate/tweaks/tones/modes, Alt+W, Alt+1..3, `//` commands; popup (dev login), options (debug panel, wipe) |
 | M1-12 E2E demo | 🟡 | `apps/extension/tests/e2e-suggest.mjs`: real backend (fake LLM) + extension + mock WA → 3 cards, insert never sends, `//topic` never sends ✅. Manual real-WA demo pending |
 
+One-command local stack: `node tools/dev.mjs` (alias `pnpm stack`); picks a free Postgres host port
+(`POSTGRES_HOST_PORT`, default 5432), writes `.env`. Tested here incl. the occupied-5432 case; **not yet run on Windows**.
+
 Local dev without keys: `LLM_MODE=fake` (or no keys) makes the gateway use the deterministic fake provider.
 
 Known gaps carried into M2: `/v1/memory/refresh` not implemented yet (M2-06), so client memory only grows via
